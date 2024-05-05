@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 function TaskInput() {
   const [task, setTask] = useState('');
+  const [ isCompleted, setIsCompleted]=useState(false)
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -12,12 +13,10 @@ function TaskInput() {
   };
 
   const handleSubmit = (e) => {
-    console.log("handle submit")
     e.preventDefault();
     if (task.trim() === '') return;
-    dispatch(addTask({ id: Math.random().toString(36).substr(2, 9), text: task }));
+    dispatch(addTask({ id: Math.random().toString(36).substr(2, 9), text: task, isCompleted:isCompleted}));
     setTask('');
-    console.log("task",task)
   };
 
 
